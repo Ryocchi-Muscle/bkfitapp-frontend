@@ -1,9 +1,9 @@
-import { createContext, useEffect, useState } from "react";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import { getCurrentUser } from "./api/auth";
-import { Home } from "./components/Home";
-import { SignIn } from "./components/SignIn";
-import { SignUp } from "./components/SignUp";
+import { React, createContext, useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { getCurrentUser } from './api/auth';
+import { Home } from './components/Home';
+import { SignIn } from './components/SignIn';
+import { SignUp } from './components/SignUp';
 
 export const AuthContext = createContext();
 
@@ -21,7 +21,7 @@ function App() {
         setCurrentUser(res?.data.data);
         console.log(res?.data.data);
       } else {
-        console.log("no current user");
+        console.log('no current user');
       }
     } catch (e) {
       console.log(e);
@@ -38,7 +38,7 @@ function App() {
       if (isSignedIn) {
         return children;
       } else {
-        return <Redirect to="signin" />;
+        return <Navigate to="signin" />;
       }
     } else {
       return <></>;
@@ -56,7 +56,7 @@ function App() {
       }}
     >
       <BrowserRouter>
-        <Switch>
+        <Routes>
           <Route exact path="/signup">
             <SignUp />
           </Route>
@@ -68,7 +68,7 @@ function App() {
               <Home />
             </Route>
           </Private>
-        </Switch>
+        </Routes>
       </BrowserRouter>
     </AuthContext.Provider>
   );
