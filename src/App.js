@@ -4,6 +4,7 @@ import { getCurrentUser } from './api/auth';
 import { Home } from './components/Home';
 import { SignIn } from './components/SignIn';
 import { SignUp } from './components/SignUp';
+import PropTypes from 'prop-types';
 
 export const AuthContext = createContext();
 
@@ -44,6 +45,11 @@ function App() {
       return <></>;
     }
   };
+
+  Private.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+
   return (
     <AuthContext.Provider
       value={{
