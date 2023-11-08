@@ -1,4 +1,4 @@
-import { React, createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { getCurrentUser } from './api/auth';
 import { Home } from './components/Home';
@@ -63,17 +63,9 @@ function App() {
     >
       <BrowserRouter>
         <Routes>
-          <Route exact path="/signup">
-            <SignUp />
-          </Route>
-          <Route exact path="/signin">
-            <SignIn />
-          </Route>
-          <Private>
-            <Route exact path="/">
-              <Home />
-            </Route>
-          </Private>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </AuthContext.Provider>

@@ -1,15 +1,16 @@
-import applyCaseMiddleware from 'axios-case-converter'
-import axios from 'axios'
+//バックエンドのAPIと通信するためのURLやリクエストの設定を行うファイル
+import applyCaseMiddleware from 'axios-case-converter';
+import axios from 'axios';
 
 const options = {
-    ignoreHeaders: true,
-}
+  ignoreHeaders: true,
+};
 
 const client = applyCaseMiddleware(
-    axios.create({
-        baseURL: 'http://localhost:3001',
-    }),
-    options
+  axios.create({
+    baseURL: 'http://localhost:3001',
+  }),
+  options,
 );
 
 export default client;
