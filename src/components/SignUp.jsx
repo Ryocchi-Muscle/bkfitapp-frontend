@@ -3,8 +3,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { signUp } from '../api/auth';
 // import { AuthContext } from "../App";
-import React from 'react';
+// import React from 'react';
 // import { Route } from 'react-router-dom';
+import GuestLoginButton from './GuestLoginButton'; // GuestLoginButtonコンポーネントのパスを適切に指定する
 
 export const SignUp = () => {
   // const { setIsSignedIn, setCurrentUser } = useContext(AuthContext);
@@ -69,8 +70,13 @@ export const SignUp = () => {
         <button type="submit" onClick={(e) => handleSignUpSubmit(e)}>
           Submit
         </button>
+        <link rel="stylesheet" href="" />
       </form>
       <Link to="/signin">サインインへ</Link>
+      <div>
+      {/* 他のサインアップ関連のUI要素をここに追加 */}
+      <GuestLoginButton />
+    </div>
     </>
   );
 };

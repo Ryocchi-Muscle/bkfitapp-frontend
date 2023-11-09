@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signIn } from '../api/auth';
 import { AuthContext } from '../App';
-import React from 'react';
+// import React from 'react';
 
 export const SignIn = () => {
   const { setIsSignedIn, setCurrentUser } = useContext(AuthContext);
