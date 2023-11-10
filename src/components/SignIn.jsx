@@ -38,6 +38,7 @@ export const SignIn = () => {
       }
     } catch (e) {
       console.log(e);
+      alert('メールアドレスまたは、パスワードに誤りがあります。');
     }
   };
   return (
