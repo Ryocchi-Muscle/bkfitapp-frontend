@@ -4,7 +4,6 @@ import { getCurrentUser } from './api/auth';
 import { Home } from './components/Home';
 import { SignIn } from './components/SignIn';
 import { SignUp } from './components/SignUp';
-import PropTypes from 'prop-types';
 
 export const AuthContext = createContext();
 
@@ -34,21 +33,17 @@ function App() {
     handleGetCurrentUser();
   }, [setCurrentUser]);
 
-  const Private = ({ children }) => {
-    if (!loading) {
-      if (isSignedIn) {
-        return children;
-      } else {
-        return <Navigate to="signin" />;
-      }
-    } else {
-      return <></>;
-    }
-  };
-
-  Private.propTypes = {
-    children: PropTypes.node.isRequired,
-  };
+  // const Private = ({ children }) => {
+  //   if (!loading) {
+  //     if (isSignedIn) {
+  //       return children;
+  //     } else {
+  //       return <Navigate to="signin" />;
+  //     }
+  //   } else {
+  //     return <></>;
+  //   }
+  // };
 
   return (
     <AuthContext.Provider
@@ -65,7 +60,8 @@ function App() {
         <Routes>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
-          <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/" element={isSignedIn ? <Home /> : <Navigate to="/signin" />} />
         </Routes>
       </BrowserRouter>
     </AuthContext.Provider>

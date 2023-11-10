@@ -34,6 +34,7 @@ export const SignUp = () => {
       alert('confirm email');
     } catch (e) {
       console.log(e);
+      alert('これは既に登録されているメールアドレスです。メールを確認してください。');
     }
   };
   return (
@@ -74,9 +75,9 @@ export const SignUp = () => {
       </form>
       <Link to="/signin">サインインへ</Link>
       <div>
-      {/* 他のサインアップ関連のUI要素をここに追加 */}
-      <GuestLoginButton />
-    </div>
+        {/* 他のサインアップ関連のUI要素をここに追加 */}
+        <GuestLoginButton />
+      </div>
     </>
   );
 };
