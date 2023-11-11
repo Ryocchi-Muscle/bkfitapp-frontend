@@ -10,16 +10,14 @@ const GuestLoginButton = () => {
       // ログインのAPIリクエストを実行
 
       // ゲストユーザーとしてログイン成功した場合、ホームページに遷移
-      navigate('/home');
+      navigate('/');
     } catch (error) {
       // エラーハンドリングを行う
       console.error('ゲストログインエラー:', error);
     }
   };
 
-  return (
-    <button onClick={handleGuestLogin}>ゲストログイン</button>
-  );
+  return <button onClick={handleGuestLogin}>ゲストログイン</button>;
 };
 
 export default GuestLoginButton;
