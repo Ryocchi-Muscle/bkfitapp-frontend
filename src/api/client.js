@@ -6,6 +6,7 @@ const options = {
   ignoreHeaders: true,
 };
 
+//Axiosインスタンスを作成
 const client = applyCaseMiddleware(
   axios.create({
     baseURL: 'http://localhost:3001',

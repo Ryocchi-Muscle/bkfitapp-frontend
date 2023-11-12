@@ -10,9 +10,14 @@ const GuestLoginButton = () => {
     // ゲストユーザーとしてログインするAPIリクエストを送信
     try {
       // ログインのAPIリクエストを実行
-      await axios.post('http://localhost:3001/auth/guest_sign_in');
+      const response = await axios.post('http://localhost:3001/auth/guest_sign_in');
+      //サーバーからの応答に認証情報が含まれている場合
+      const authToken = response.data.authToken;
+      // Cookieに認証情報を保存
+      document.cookie = `authToken=${authToken}; path=/`;
       // ゲストユーザーとしてログイン成功した場合、ホームページに遷移
       navigate('/');
+      console.log('ok');
     } catch (error) {
       // エラーハンドリングを行う
       console.error('ゲストログインエラー:', error);
