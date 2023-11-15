@@ -25,9 +25,8 @@ export const signOut = () => {
 
 // ログインユーザーの取得
 export const getCurrentUser = () => {
-  if (!Cookies.get('_access_token') || !Cookies.get('_client') || !Cookies.get('_uid')) 
-  
-     return;
+  if (!Cookies.get('_access_token') || !Cookies.get('_client') || !Cookies.get('_uid')) return;
+
 
   return client.get('/auth/sessions', {
     headers: {
@@ -37,3 +36,19 @@ export const getCurrentUser = () => {
     },
   });
 };
+
+export const getGuestCurrentUser = () => {
+  if (!Cookies.get('_access_token') || !Cookies.get('_client') || !Cookies.get('_uid')) return;
+
+
+  return client.get('/auth/guest_sessions', {
+    headers: {
+      'access-token': Cookies.get('_access_token'),
+      client: Cookies.get('_client'),
+      uid: Cookies.get('_uid'),
+    },
+  });
+};
+
+
+

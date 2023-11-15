@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { getCurrentUser } from './api/auth';
+import { getCurrentUser,getGuestCurrentUser  } from './api/auth';
 import { Home } from './components/Home';
 import { SignIn } from './components/SignIn';
 import { SignUp } from './components/SignUp';
@@ -14,8 +14,11 @@ function App() {
 
   const handleGetCurrentUser = async () => {
     try {
-      const res = await getCurrentUser();
-
+      let res = await getCurrentUser();
+      // const res = await getCurrentUser();
+      if (res === undefined) {
+        res = await getGuestCurrentUser();
+      }
       if (res?.data.isLogin === true) {
         setIsSignedIn(true);
         setCurrentUser(res?.data.data);
@@ -32,18 +35,6 @@ function App() {
   useEffect(() => {
     handleGetCurrentUser();
   }, [setCurrentUser]);
-
-  // const Private = ({ children }) => {
-  //   if (!loading) {
-  //     if (isSignedIn) {
-  //       return children;
-  //     } else {
-  //       return <Navigate to="signin" />;
-  //     }
-  //   } else {
-  //     return <></>;
-  //   }
-  // };
 
   return (
     <AuthContext.Provider
