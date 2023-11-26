@@ -7,11 +7,12 @@ import { AuthContext } from '../App';
 
 export const SignIn = () => {
   const { setIsSignedIn, setCurrentUser } = useContext(AuthContext);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState(''); //emailの状態管理
+  const [password, setPassword] = useState(''); //passwordの状態管理
 
   const navigate = useNavigate();
 
+  //emailとpasswordを１つのオブジェクトにまとめて返す関数
   const generateParams = () => {
     const signInParams = {
       email: email,
@@ -19,7 +20,7 @@ export const SignIn = () => {
     };
     return signInParams;
   };
-
+//
   const handleSignInSubmit = async (e) => {
     e.preventDefault();
     const params = generateParams();

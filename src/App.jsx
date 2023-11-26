@@ -1,11 +1,11 @@
 import { createContext, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { getCurrentUser,getGuestCurrentUser  } from './api/auth';
+import { getCurrentUser } from './api/auth';
 import { Home } from './components/Home';
 import { SignIn } from './components/SignIn';
 import { SignUp } from './components/SignUp';
 
-export const AuthContext = createContext();
+export const AuthContext = createContext(); //
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -14,15 +14,16 @@ function App() {
 
   const handleGetCurrentUser = async () => {
     try {
-      let res = await getCurrentUser();
-      // const res = await getCurrentUser();
-      if (res === undefined) {
-        res = await getGuestCurrentUser();
-      }
+      // let res = await getCurrentUser();
+      const res = await getCurrentUser();
+      // if (res === undefined) {
+      //   // res = await getGuestCurrentUser();
+      // }
+      console.log(res?.data.isLogin);
       if (res?.data.isLogin === true) {
         setIsSignedIn(true);
         setCurrentUser(res?.data.data);
-        console.log(res?.data.data);
+        // console.log(res?.data.data);
       } else {
         console.log('no current user');
       }
@@ -36,7 +37,9 @@ function App() {
     handleGetCurrentUser();
   }, [setCurrentUser]);
 
+  console.log(isSignedIn);
   return (
+    // valueをAuthContext.Providerで囲まれているコンポーネント内で使用（共有）することができる。
     <AuthContext.Provider
       value={{
         loading,

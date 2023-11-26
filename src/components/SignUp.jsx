@@ -71,7 +71,6 @@ export const SignUp = () => {
         <button type="submit" onClick={(e) => handleSignUpSubmit(e)}>
           Submit
         </button>
-        <link rel="stylesheet" href="" />
       </form>
       <Link to="/signin">サインインへ</Link>
       <div>
